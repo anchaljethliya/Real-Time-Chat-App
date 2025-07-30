@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../chat/Home';
 import Login from '../authentication/Login';
 import SignUp from '../authentication/SignUp';
 import Profile from '../authentication/Profile';
+import ContactList from '../contacts/ContactList';
+import SearchContacts from '../contacts/SearchContacts';
+import ChatContainer from '../chat/ChatContainer';
 import PrivateRoute from '../authentication/PrivateRoute';
 
 const MainContent = () => {
+  const [selectedContact, setSelectedContact] = useState(null);
+
   return (
     <div className="main-content">
       <Routes>
@@ -14,7 +19,7 @@ const MainContent = () => {
           path="/" 
           element={
             <PrivateRoute>
-              <Home />
+              <ChatContainer selectedContact={selectedContact} />
             </PrivateRoute>
           } 
         />
@@ -22,7 +27,10 @@ const MainContent = () => {
           path="/contacts" 
           element={
             <PrivateRoute>
-              <div>Contacts Page</div>
+              <div className="contacts-page">
+                <ContactList onContactSelect={setSelectedContact} />
+                <SearchContacts />
+              </div>
             </PrivateRoute>
           } 
         />
