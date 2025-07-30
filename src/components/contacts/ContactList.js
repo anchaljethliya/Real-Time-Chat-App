@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { getUserContacts, subscribeToUserStatus } from '../../services/firebase';
 
-const ContactList = () => {
+const ContactList = ({ onContactSelect }) => {
   const { currentUser } = useAuth();
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -43,6 +43,12 @@ const ContactList = () => {
     };
   }, [contacts]);
 
+  const handleContactClick = (contact) => {
+    if (onContactSelect) {
+      onContactSelect(contact);
+    }
+  };
+
   if (loading) {
     return <div className="loading-container">Loading contacts...</div>;
   }
@@ -59,7 +65,11 @@ const ContactList = () => {
       ) : (
         <div className="contacts-grid">
           {contacts.map(contact => (
-            <div key={contact.id} className="contact-item">
+            <div 
+              key={contact.id} 
+              className="contact-item"
+              onClick={() => handleContactClick(contact)}
+            >
               <div className="contact-avatar">
                 <span>{contact.displayName?.charAt(0) || 'U'}</span>
                 <div className={`status-indicator ${contact.isOnline ? 'online' : 'offline'}`}></div>

@@ -19,6 +19,12 @@ code {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.sidebar-header .user-info {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
 .sidebar-menu ul {
   list-style: none;
   padding: 0;
@@ -39,6 +45,25 @@ code {
 
 .sidebar-menu a:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background-color: rgba(231, 76, 60, 0.1);
 }
 
 /* Home and chat area styles */

@@ -213,6 +213,7 @@ export const searchUsers = async (searchTerm) => {
     
     return users;
   } catch (error) {
+    console.error('Search users error:', error);
     throw error;
   }
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Home from '../chat/Home';
 import Login from '../authentication/Login';
 import SignUp from '../authentication/SignUp';
@@ -11,6 +11,12 @@ import PrivateRoute from '../authentication/PrivateRoute';
 
 const MainContent = () => {
   const [selectedContact, setSelectedContact] = useState(null);
+  const navigate = useNavigate();
+
+  const handleContactSelect = (contact) => {
+    setSelectedContact(contact);
+    navigate('/');
+  };
 
   return (
     <div className="main-content">
@@ -28,7 +34,7 @@ const MainContent = () => {
           element={
             <PrivateRoute>
               <div className="contacts-page">
-                <ContactList onContactSelect={setSelectedContact} />
+                <ContactList onContactSelect={handleContactSelect} />
                 <SearchContacts />
               </div>
             </PrivateRoute>

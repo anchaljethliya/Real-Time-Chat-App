@@ -16,7 +16,7 @@ const SearchContacts = () => {
       return;
     }
 
-    const searchUsers = async () => {
+    const performSearch = async () => {
       try {
         setLoading(true);
         setError('');
@@ -33,7 +33,7 @@ const SearchContacts = () => {
       }
     };
 
-    const timeoutId = setTimeout(searchUsers, 500);
+    const timeoutId = setTimeout(performSearch, 500);
     return () => clearTimeout(timeoutId);
   }, [searchTerm, currentUser]);
 
